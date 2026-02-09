@@ -1,0 +1,299 @@
+/* Product Page Styles */
+.products-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: calc(var(--header-height) + 1rem);
+    position: relative;
+}
+
+/* Sidebar / Top Bar Styles */
+.products-sidebar {
+    width: 100%;
+    position: sticky;
+    top: var(--header-height);
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+.category-main-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 1rem;
+}
+
+.category-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--text-secondary);
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+@media (hover: hover) {
+    .category-btn:hover {
+        transform: translateY(-2px);
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+}
+
+.category-btn.active {
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);
+}
+
+/* Hover Grid Dropdown */
+.category-grid-dropdown {
+    position: absolute;
+    top: 100%;
+    /* Below the sidebar/topbar */
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 90;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.category-grid-dropdown.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.grid-category-item {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    text-align: center;
+    background: #f8fafc;
+}
+
+@media (hover: hover) {
+    .grid-category-item:hover {
+        background: #fff;
+        color: var(--primary-color);
+        border-color: rgba(37, 99, 235, 0.2);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+}
+
+.grid-category-item.active {
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary-color);
+    font-weight: 600;
+    border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Scrollbar for grid */
+.category-grid-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.category-grid-dropdown::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+/* Products Grid Container */
+.products-grid-container {
+    flex-grow: 1;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* Product Card - minimal checks */
+.product-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: var(--transition-base);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (hover: hover) {
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-lg);
+        border-color: rgba(0, 0, 0, 0);
+    }
+
+    .product-card:hover .card-image-wrapper img {
+        transform: scale(1.08);
+    }
+}
+
+.card-image-wrapper {
+    position: relative;
+    height: 280px;
+    padding: 2rem;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.card-image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+}
+
+.card-details {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 0.5rem;
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--text-primary);
+}
+
+.card-category {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 1rem;
+}
+
+.card-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.card-viewers {
+    font-size: 0.75rem;
+    color: #ef4444;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: #fef2f2;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.viewer-dot {
+    width: 5px;
+    height: 5px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .products-layout {
+        padding-top: calc(var(--header-height) + 0.5rem);
+    }
+
+    .products-sidebar {
+        padding: 0.5rem 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .category-main-buttons {
+        gap: 0.5rem;
+    }
+
+    .category-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .category-grid-dropdown {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        height: 30vh;
+        background: #fff;
+        padding: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        align-content: start;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+    }
+
+    .grid-category-item {
+        font-size: 0.85rem;
+        padding: 0.6rem;
+    }
+
+    .products-grid-container {
+        padding: 0 1rem;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+
+    .card-image-wrapper {
+        height: 200px;
+        padding: 1rem;
+    }
+}
